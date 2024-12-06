@@ -11,7 +11,7 @@ public class PaymentService {
         //Simulate payment processing with a delay
         try {
             Thread.sleep(2000);
-            System.out.println("Payment processed for order: " + orderId);
+            log.info("Payment processed for order: " + orderId);
             return true;
         } catch (InterruptedException e) {
             e.printStackTrace();

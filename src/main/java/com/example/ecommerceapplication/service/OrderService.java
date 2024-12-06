@@ -4,21 +4,17 @@ import com.example.ecommerceapplication.controller.response.exception.ItemIsOutO
 import com.example.ecommerceapplication.model.Order;
 import com.example.ecommerceapplication.model.enums.OrderStatus;
 import com.example.ecommerceapplication.repository.OrderRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
 public class OrderService {
     final OrderRepository orderRepository;
     final InventoryService inventoryService;
     final PaymentService paymentService;
-
-    public OrderService(OrderRepository orderRepository, InventoryService inventoryService, PaymentService paymentService) {
-        this.orderRepository = orderRepository;
-        this.inventoryService = inventoryService;
-        this.paymentService = paymentService;
-    }
 
     @Transactional
     public Order placeOrder(String customerName, Long itemId, Integer quantity) throws ItemIsOutOfStockException {
